@@ -1,0 +1,67 @@
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:0 auto;
+}
+.waveWrapperInner {
+    width:100%;
+    height:100%;
+    overflow: hidden;
+    position:absolute; /*因为默认情况下，所有 HTML 元素的位置都是静态的，可以改变高度和宽度，但无法移动。*/
+    bottom: -1.2px;      /*所以如需对位置进行操作，需要把元素的 CSS position 属性设置为 relative、fixed 或 absolute。*/   
+}
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgBottom {
+    z-index: 5;
+}
+/*bottom和middle的动画效果*/
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-position: 0 bottom;
+    background-repeat:repeat no-repeat;
+    transform-origin: center bottom;/*改变原点为中底部*/
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+   animation: move-wave 3s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;/*循环播放无数次*/
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
